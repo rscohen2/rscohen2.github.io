@@ -8,3 +8,11 @@
   --accent-hover: mediumvioletred;
   --marked: mediumspringgreen;
 }
+
+h1 {
+  border-block-start: 10px solid var(--heading-color);
+  margin-block-start: 4rem;
+  margin-block-end: 2rem;
+  font-family: var(--heading-font);
+  font-weight: normal;
+}
