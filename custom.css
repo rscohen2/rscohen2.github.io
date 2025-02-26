@@ -1,1 +1,10 @@
-
+:root {
+  --sans-font: Georgia, "Times New Roman", serif;
+  --bg: mintcream;
+  --border: darkslategray;
+  --accent-bg: honeydew;
+  --text: darkslategray;
+  --accent: mediumvioletred;
+  --accent-hover: mediumvioletred;
+  --marked: mediumspringgreen;
+}
