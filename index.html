@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<html>
+
+
 <div class="container">
 <div class="header">
 
@@ -11,6 +15,9 @@
   <link rel="stylesheet" href="custom.css">
 
 </head>
+
+<body>
+
 
 <div class="tab">
   <button class="tablinks" onclick="openCity(event, 'About')">About</button>
@@ -55,6 +62,28 @@
 <footer>
   <p> Becca Cohen | UIUC | rscohen2 @ illinois.edu</p>
 </footer>
+  <script>
+function openCity(evt, tabName) {
+  // Hide all tab content
+  var tabcontent = document.getElementsByClassName("tabcontent");
+  for (var i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Remove active class from all buttons
+  var tablinks = document.getElementsByClassName("tablinks");
+  for (var i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the selected tab
+  document.getElementById(tabName).style.display = "block";
+
+  // Highlight the clicked button
+  evt.currentTarget.className += " active";
+}
+</script>
 </body>
 </div>
 </div>
+</html>
