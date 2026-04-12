@@ -8,7 +8,9 @@
   --accent-hover: mediumvioletred;
   --marked: mediumspringgreen;
 }
-
+body {
+  background-color: var(--bg);
+}
 h1 {
   border-block-start: 10px solid var(--heading-color);
   margin-block-start: 4rem;
