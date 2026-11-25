@@ -1,101 +1,346 @@
 <!DOCTYPE html>
-<html>
-
-
-<div class="container">
-<div class="header">
-
+<html lang="en">
 <head>
-  <title> Becca Cohen </title>
   <meta charset="utf-8">
-<p> Please excuse the appearance of this site as it is under construction still :) </p>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rebecca Cohen · PhD Researcher, UIUC</title>
+  <meta name="description" content="Rebecca (Becca) Cohen is a PhD student at the University of Illinois Urbana-Champaign studying AI ethics, cultural analytics, and large language models.">
 
-  <link rel="stylesheet" href="simple.css">
-  <link rel="stylesheet" href="template.css">
-  <link rel="stylesheet" href="custom.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
 
+  <style>
+    :root {
+      --bg: #FBF4F1;
+      --surface: #FFFFFF;
+      --ink: #2A1E23;
+      --muted: #6E5C62;
+      --rule: #EADCD6;
+      --accent: #A3324F;
+      --accent-ink: #FFFFFF;
+      --accent-soft: #F6E1E4;
+      --sun: #E9A23B;
+      --sun-soft: #FCEBCB;
+      --serif: "Newsreader", Georgia, "Times New Roman", serif;
+      --sans: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1F1719;
+        --surface: #2A2023;
+        --ink: #F3E9E6;
+        --muted: #B8A6AA;
+        --rule: #3D2F33;
+        --accent: #F08BA3;
+        --accent-ink: #2A1E23;
+        --accent-soft: #432A33;
+        --sun: #F2B84B;
+        --sun-soft: #4A3A1E;
+        color-scheme: dark;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 1.125rem;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+    a:hover { text-decoration-thickness: 2px; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+    img { max-width: 100%; }
+
+    .wrap { max-width: 72rem; margin: 0 auto; padding: 0 1.5rem; }
+
+    .skip { position: absolute; left: -999px; top: 0; background: var(--accent); color: var(--accent-ink); padding: .5rem 1rem; z-index: 20; }
+    .skip:focus { left: 1rem; top: 1rem; }
+
+    /* ---------- Top bar ---------- */
+    .topbar {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 4rem; }
+    .mark { font-family: var(--sans); font-weight: 800; font-size: 1.15rem; letter-spacing: -0.03em; color: var(--ink); text-decoration: none; }
+    .nav { display: flex; align-items: center; gap: 1.5rem; font-family: var(--sans); font-size: .95rem; }
+    .nav a { color: var(--ink); text-decoration: none; }
+    .nav a:hover { color: var(--accent); }
+    .nav .cv {
+      background: var(--accent); color: var(--accent-ink);
+      padding: .45rem 1rem; border-radius: 999px; font-weight: 600;
+    }
+    .nav .cv:hover { color: var(--accent-ink); filter: brightness(1.08); }
+
+    /* ---------- Hero ---------- */
+    .hero { padding: 5rem 0 6rem; }
+    .hero .wrap { display: grid; grid-template-columns: 1.4fr 1fr; gap: 4rem; align-items: center; }
+    .hello { font-family: var(--sans); font-size: 1.1rem; font-weight: 600; color: var(--accent); margin: 0 0 1rem; }
+    .headline {
+      font-family: var(--sans);
+      font-size: clamp(2.6rem, 5.6vw, 4.6rem);
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -0.045em;
+      margin: 0 0 1.75rem;
+      max-width: 14ch;
+    }
+    .lede { font-size: 1.3rem; line-height: 1.55; color: var(--muted); max-width: 34rem; margin: 0 0 2.25rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: .75rem; font-family: var(--sans); }
+    .btn {
+      display: inline-block; text-decoration: none; font-weight: 600; font-size: 1rem;
+      padding: .75rem 1.3rem; border-radius: 999px; border: 2px solid var(--ink); color: var(--ink);
+    }
+    .btn:hover { background: var(--ink); color: var(--bg); }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+    .btn.primary:hover { filter: brightness(1.08); }
+
+    .photo { position: relative; justify-self: center; width: min(100%, 22rem); }
+    .photo::before {
+      content: ""; position: absolute; inset: 1.5rem -1.5rem -1.5rem 1.5rem;
+      background: var(--sun); border-radius: 46% 54% 42% 58% / 55% 45% 55% 45%;
+    }
+    .photo img {
+      position: relative; display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover;
+      border-radius: 46% 54% 42% 58% / 55% 45% 55% 45%;
+      background: var(--accent-soft);
+    }
+
+    /* One orchestrated entrance, hero only */
+    @media (prefers-reduced-motion: no-preference) {
+      .hero .copy > * { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
+      .hero .copy > :nth-child(2) { animation-delay: .08s; }
+      .hero .copy > :nth-child(3) { animation-delay: .16s; }
+      .hero .copy > :nth-child(4) { animation-delay: .24s; }
+      .photo { animation: pop .9s cubic-bezier(.2,.7,.2,1) .15s both; }
+      @keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+      @keyframes pop { from { opacity: 0; transform: scale(.94) rotate(-3deg); } }
+    }
+
+    /* ---------- News band ---------- */
+    .news { background: var(--accent); color: var(--accent-ink); padding: 3.5rem 0; }
+    .news h2 { color: var(--accent-ink); }
+    .news-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
+    .news-item { border-top: 3px solid var(--sun); padding-top: 1.1rem; }
+    .news-when { font-family: var(--sans); font-weight: 600; font-size: .95rem; opacity: .85; margin: 0 0 .4rem; }
+    .news-item p { margin: 0; font-size: 1.2rem; line-height: 1.5; }
+    .news a { color: inherit; }
+
+    /* ---------- Sections ---------- */
+    section.block { padding: 6rem 0 0; }
+    h2 {
+      font-family: var(--sans); font-weight: 800; font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+      letter-spacing: -0.035em; line-height: 1.1; margin: 0 0 2.5rem; color: var(--ink);
+    }
+
+    /* Research: three questions, staggered */
+    .questions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+    .question h3 {
+      font-family: var(--sans); font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em;
+      line-height: 1.25; margin: 0 0 .9rem;
+    }
+    .question p { margin: 0; color: var(--muted); }
+    .question:nth-child(2) { margin-top: 3rem; }
+    .question:nth-child(3) { margin-top: 6rem; }
+    .question::before {
+      content: ""; display: block; width: 2.5rem; height: 2.5rem; border-radius: 50%;
+      background: var(--sun-soft); border: 3px solid var(--sun); margin-bottom: 1.25rem;
+    }
+    .question:nth-child(2)::before { background: var(--accent-soft); border-color: var(--accent); border-radius: 30%; }
+    .question:nth-child(3)::before { border-radius: 0 50% 50% 50%; }
+
+    /* Work: featured piece + smaller pieces */
+    .work { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .piece {
+      display: flex; flex-direction: column; text-decoration: none; color: var(--ink);
+      padding: 1.75rem; border-radius: 1.25rem; background: var(--surface);
+      border: 1px solid var(--rule);
+    }
+    a.piece:hover { border-color: var(--accent); }
+    a.piece:hover .piece-title { color: var(--accent); }
+    .piece.featured {
+      grid-column: 1 / -1; background: var(--sun-soft); border-color: transparent;
+      padding: 2.5rem; border-radius: 1.75rem;
+    }
+    .piece.featured .piece-title { font-size: clamp(1.6rem, 3vw, 2.2rem); max-width: 26ch; }
+    .piece-venue { font-family: var(--sans); font-size: .92rem; font-weight: 600; color: var(--accent); margin: 0 0 .75rem; }
+    .piece-title { font-family: var(--serif); font-size: 1.4rem; line-height: 1.3; font-weight: 500; margin: 0 0 1rem; }
+    .piece-authors { font-family: var(--sans); font-size: .95rem; color: var(--muted); margin: auto 0 0; }
+    .piece-authors strong { color: var(--ink); }
+    .badge {
+      display: inline-block; font-family: var(--sans); font-size: .8rem; font-weight: 700;
+      background: var(--accent); color: var(--accent-ink); padding: .15rem .6rem; border-radius: 999px;
+      margin-left: .4rem; vertical-align: .1em;
+    }
+    .piece.poster { background: var(--accent-soft); border-color: transparent; }
+
+    /* ---------- Contact ---------- */
+    .contact { padding: 7rem 0 4rem; }
+    .contact .big {
+      font-family: var(--sans); font-weight: 800; letter-spacing: -0.04em; line-height: 1.05;
+      font-size: clamp(2rem, 5vw, 3.6rem); margin: 0 0 1.25rem;
+    }
+    .contact .big a { color: var(--accent); text-decoration-thickness: 3px; text-underline-offset: 8px; overflow-wrap: anywhere; }
+    .contact p { color: var(--muted); margin: 0 0 .5rem; }
+    .contact-links { display: flex; flex-wrap: wrap; gap: 1.5rem; font-family: var(--sans); font-weight: 600; margin-top: 1.5rem; }
+
+    footer { border-top: 1px solid var(--rule); padding: 1.5rem 0 2.5rem; font-family: var(--sans); font-size: .88rem; color: var(--muted); }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 56rem) {
+      .hero { padding: 3rem 0 4rem; }
+      .hero .wrap { grid-template-columns: 1fr; gap: 3rem; }
+      .photo { width: min(80%, 18rem); order: -1; justify-self: start; }
+      .questions { grid-template-columns: 1fr; }
+      .question:nth-child(n) { margin-top: 0; }
+      .news-grid, .work { grid-template-columns: 1fr; }
+      .piece.featured { padding: 1.75rem; }
+      section.block { padding-top: 4.5rem; }
+    }
+    @media (max-width: 34rem) {
+      .nav a:not(.cv) { display: none; }
+    }
+  </style>
 </head>
 
 <body>
+  <a class="skip" href="#main">Skip to content</a>
 
+  <header class="topbar">
+    <div class="wrap">
+      <a class="mark" href="#top">Becca Cohen</a>
+      <nav class="nav" aria-label="Main">
+        <a href="#research">Research</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+        <a class="cv" href="Cohen%20CV.pdf" target="_blank" rel="noopener">CV</a>
+      </nav>
+    </div>
+  </header>
 
-<div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'About')">About</button>
-  <button class="tablinks" onclick="openCity(event, 'CV')">CV</button>
-  <button class="tablinks" onclick="openCity(event, 'Publications')">Publications</button>
-  <button class="tablinks" onclick="openCity(event, 'GitHub')">Github</button>
+  <main id="main">
 
-</div>
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <div class="wrap">
+        <div class="copy">
+          <p class="hello">Hi, I’m Becca.</p>
+          <h1 class="headline">I study how AI reads culture.</h1>
+          <p class="lede">
+            I’m a third-year PhD student at the University of Illinois Urbana-Champaign, working where AI ethics meets cultural analytics: how large language models absorb, reproduce, and reshape the stories we tell.
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="#work">See my work</a>
+            <a class="btn" href="mailto:rscohen2@illinois.edu">Get in touch</a>
+          </div>
+        </div>
+        <div class="photo">
+          <img src="DSC09466.JPG" alt="Portrait of Rebecca Cohen">
+        </div>
+      </div>
+    </section>
 
-<!-- Tab content -->
-<div id="About" class="tabcontent">
-  <h3>About</h3>
-  <p> Becca Cohen is a 3rd year PhD student studying AI ethics, cultural analytics and LLMs. </p>
-</div>
+    <!-- What's new -->
+    <section class="news" aria-labelledby="news-h">
+      <div class="wrap">
+        <h2 id="news-h">What’s new</h2>
+        <div class="news-grid">
+          <div class="news-item">
+            <p class="news-when">Accepted</p>
+            <p>My paper <a href="Cohen_iConference2027.pdf">PAPER TITLE</a> will appear in the full papers track at iConference 2027.</p>
+          </div>
+          <div class="news-item">
+            <p class="news-when">Presenting</p>
+            <p>I’m sharing a poster, <a href="POSTER_LINK">POSTER TITLE</a>, with the Queer in AI affinity group at NeurIPS 2026.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<div id="CV" class="tabcontent">
-  <h3>CV</h3>
-  <p><a href="Cohen CV.pdf" target="_blank">Download My CV </a>
-</p>
-</div>
+    <!-- Research -->
+    <section class="block" id="research">
+      <div class="wrap">
+        <h2>Questions I’m working on</h2>
+        <div class="questions">
+          <div class="question">
+            <h3>What do language models learn about culture?</h3>
+            <p>LLMs are trained on centuries of writing. I look at which cultural patterns they pick up, which they flatten, and whose voices get lost along the way.</p>
+          </div>
+          <div class="question">
+            <h3>How does culture change, and where does it start?</h3>
+            <p>Using computational methods on large text collections, I trace how new ideas and styles emerge and spread through literature and media.</p>
+          </div>
+          <div class="question">
+            <h3>Who gets to be an author?</h3>
+            <p>From global bestseller lists to AI-generated text, I study how markets, brands, and machines are changing what authorship means.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<div id="Publications" class="tabcontent">
-  <h3>Publications</h3>
-  <p><p><a href="https://ceur-ws.org/Vol-3834/paper70.pdf"> Griebel S, Cohen B, et al. Locating the Leading Edge of Cultural Change </a> </p>
-  
-  <p> <a href="https://muse.jhu.edu/article/948008"> Dileonardi S, Cohen B, Sinykin D. Brand Management: International Bestsellers and the Death of the Author, Again  </a> </p>
-  </p>
-  </div>
+    <!-- Work -->
+    <section class="block" id="work">
+      <div class="wrap">
+        <h2>Papers &amp; posters</h2>
+        <div class="work">
 
-<div id="Github" class="tabcontent">
-  <h3>Github</h3>
-  <p><a href="https://github.com/rscohen2" </a>
-  </p>
-  </div>
+          <!-- Featured: iConference 2027. Fill in title/authors; upload the PDF next to index.html with this name. -->
+          <a class="piece featured" href="Cohen_iConference2027.pdf" target="_blank" rel="noopener">
+            <p class="piece-venue">iConference 2027 · Full paper <span class="badge">Forthcoming</span></p>
+            <p class="piece-title">PAPER TITLE</p>
+            <p class="piece-authors"><strong>B. Cohen</strong>, CO-AUTHORS</p>
+          </a>
 
-  
-<h1>Rebecca Cohen</h1>
-<p>Email: rscohen2@illinois.edu | Location: Champaign, IL, USA </p>
-<img src="DSC09466.JPG" alt="Photo of Becca Cohen." width="200" height="100">
-<p style="margin-top:20px;">
+          <!-- NeurIPS poster. Fill in title/authors and set the link. -->
+          <a class="piece poster" href="POSTER_LINK" target="_blank" rel="noopener">
+            <p class="piece-venue">NeurIPS 2026 · Queer in AI poster</p>
+            <p class="piece-title">POSTER TITLE</p>
+            <p class="piece-authors"><strong>B. Cohen</strong>, CO-AUTHORS</p>
+          </a>
 
-<h2>CV</h2>
-<a href="Cohen CV.pdf" target="_blank">Download My CV </a>
+          <a class="piece" href="https://ceur-ws.org/Vol-3834/paper70.pdf" target="_blank" rel="noopener">
+            <p class="piece-venue">Computational Humanities Research 2024</p>
+            <p class="piece-title">Locating the Leading Edge of Cultural Change</p>
+            <p class="piece-authors">S. Griebel, <strong>B. Cohen</strong>, et al.</p>
+          </a>
 
-<h2> Publications </h2>
-<p><a href="https://ceur-ws.org/Vol-3834/paper70.pdf"> Griebel S, Cohen B, et al. Locating the Leading Edge of Cultural Change </a> </p>
+          <!-- Replace "Journal article" with the journal name and year -->
+          <a class="piece" href="https://muse.jhu.edu/article/948008" target="_blank" rel="noopener">
+            <p class="piece-venue">Journal article</p>
+            <p class="piece-title">Brand Management: International Bestsellers and the Death of the Author, Again</p>
+            <p class="piece-authors">S. Dileonardi, <strong>B. Cohen</strong>, D. Sinykin</p>
+          </a>
 
-<p> <a href="https://muse.jhu.edu/article/948008"> Dileonardi S, Cohen B, Sinykin D. Brand Management: International Bestsellers and the Death of the Author, Again  </a> </p>
+        </div>
+      </div>
+    </section>
 
-</ul>
-</div>
-<div class="contact-info">
+    <!-- Contact -->
+    <section class="contact" id="contact">
+      <div class="wrap">
+        <h2>Say hello</h2>
+        <p class="big"><a href="mailto:rscohen2@illinois.edu">rscohen2@illinois.edu</a></p>
+        <p>I’m always happy to talk about research, collaborations, or speaking invitations.</p>
+        <div class="contact-links">
+          <a href="https://github.com/rscohen2" target="_blank" rel="noopener">GitHub</a>
+          <a href="Cohen%20CV.pdf" target="_blank" rel="noopener">Download CV</a>
+          <!-- Add Google Scholar, LinkedIn, ORCID here -->
+        </div>
+      </div>
+    </section>
+  </main>
 
-<footer>
-  <p> Becca Cohen | UIUC | rscohen2 @ illinois.edu</p>
-</footer>
-  <script>
-function openCity(evt, tabName) {
-  // Hide all tab content
-  var tabcontent = document.getElementsByClassName("tabcontent");
-  for (var i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-
-  // Remove active class from all buttons
-  var tablinks = document.getElementsByClassName("tablinks");
-  for (var i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-
-  // Show the selected tab
-  document.getElementById(tabName).style.display = "block";
-
-  // Highlight the clicked button
-  evt.currentTarget.className += " active";
-}
-</script>
+  <footer>
+    <div class="wrap">© 2026 Rebecca Cohen · Champaign, Illinois</div>
+  </footer>
 </body>
-</div>
-</div>
 </html>
